@@ -1,0 +1,66 @@
+body {
+  color: white;
+  background-color: #141312;
+}
+
+.HEAD {
+  background-color: #1a1614;
+  border-bottom-color: #080807;
+}
+
+.FOOT {
+  background-color: #1c1b1a;
+}
+
+.logo-text {
+  color: #e3d9c1;
+}
+
+.ch-link {
+  color: #baae9b;
+}
+
+.ch-link:hover {
+  color: #faf6eb;
+  background-color: #bdb3a278;
+}
+
+.nav-link {
+  color: #d6d2c7;
+}
+
+.nav-link-chosen {
+  border-bottom-color: #d6d2c7;
+}
+
+.main-section-form {
+  border-color: #cc9710;
+}
+
+.key-input {
+  background-color: #1a1917;
+  border-color: #4a4845;
+}
+
+.key-input:focus {
+  border-color: #bdbdbd;
+}
+
+*::-webkit-scrollbar-corner {
+  background-color: #2b2b2b;
+}
+
+*::-webkit-scrollbar-track {
+  background: #2b2b2b;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #75736f;
+  border-color: black;
+}
+
+body::-webkit-scrollbar-thumb,
+.left-menu::-webkit-scrollbar-thumb {
+  background-color: #f78502;
+  border-color: black;
+}

@@ -1,0 +1,50 @@
+body {
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Roboto, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  border: 3px solid;
+}
+
+body::-webkit-scrollbar-thumb,
+.left-menu::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  border: 3px solid;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+.container {
+  box-sizing: border-box;
+  max-width: 1219px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 55px;
+  padding-right: 55px;
+}
+
+.ch-link {
+  border: none;
+  transition: all 0.3s ease-in;
+}
+
+.ch-link:hover {
+  transition: all 0.3s ease-in;
+}

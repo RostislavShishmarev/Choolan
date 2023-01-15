@@ -1,0 +1,70 @@
+.HEAD {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  border-bottom: 0.25vw solid;
+  z-index: 10;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 14vw;
+  padding-right: 14vw;
+  max-width: none;
+}
+
+.logo-block {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: center;
+}
+
+.logo {
+  background-image: url(../favicon.ico);
+  background-size: cover;
+  width: 5vw;
+  height: 5vw;
+  margin-top: 0.6vw;
+  margin-bottom: 0.6vw;
+}
+
+.logo-text {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2.5vw;
+  line-height: 3vw;
+  text-align: left;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0.8vw;
+}
+
+.right-block {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: center;
+  height: 5,4vw;
+}
+
+.head-link {
+  font-size: 1.7vw;
+  padding: 0.6vw;
+  border-radius: 1.25vw;
+}
+
+.first-block {
+  margin-top: 6.5vw;
+}
+
+.FOOT {
+  padding-top: 30px;
+  padding-bottom: 5px;
+}
