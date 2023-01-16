@@ -16,20 +16,28 @@
     <title>Чулан</title>
   </head>
   <body>
-    <div class="HEAD">
-      <div class="head">
-        <div class="logo-block">
-          <a class="logo" href="/"></a>
-          <a class="logo-text" href="/">Чулан</a>
-        </div>
-        <div class="right-block">
-          <a class="ch-link head-link" href="/about">О проекте</a>
+    <head role="banner">
+      <div class="HEAD">
+        <div class="head">
+          <div class="logo-block">
+            <a class="logo" href="/"></a>
+            <a class="logo-text" href="/">Чулан</a>
+          </div>
+          <div class="right-block">
+            <a class="ch-link head-link" href="/about">О проекте</a>
+          </div>
         </div>
       </div>
-    </div>
-    {% block content %}{% endblock %}
-    <div class="FOOT">
-      <div class="container foot"></div>
-    </div>
+    </head>
+    <main role="main">
+      <div class="main-content">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+    <footer role="contentinfo">
+      <div class="FOOT">
+        <div class="container foot"></div>
+      </div>
+    </footer>
   </body>
 </html>

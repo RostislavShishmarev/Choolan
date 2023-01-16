@@ -1,5 +1,5 @@
 {% extends "Base.html" %} {% block content %}
-<div class="container first-block">
+<div class="container">
     <div class="main-section">
         <div class="main-section-nav">
             <div class="nav-container">
@@ -8,8 +8,15 @@
             </div>
         </div>
         <div class="main-section-form">
-            Text 
-            <p>A lot of text!</p>
+            <form class="m-file-form">
+                <input type="file" required="true" />
+                <div class="hour-input-container">
+                    <p class="hour-input-text">Сохранить на</p>
+                    <input type="number" class="ch-text-input" min="1" max="24" value="1" />
+                    <p class="hour-input-text">час (а/ов)</p>
+                </div>
+                <input type="submit" class="submit-button" value="Загрузить"/>
+            </form>
         </div>
     </div>
 </div>

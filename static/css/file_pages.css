@@ -43,23 +43,24 @@
   flex-direction: column;
 }
 
-.m-file-child {
+.m-file-form > * {
   margin: 5px;
   margin-bottom: 10px;
 }
 
-.key-input {
+.key-text-input {
   width: 60%;
-  border-width: 1px;
-  border-style: solid;
-}
-
-.key-input:focus {
-  border-color: #bdbdbd;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
 
 .submit-button {
-  width: 10%;
+  width: fit-content;
+  border: none;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  transition: all 0.2s ease-in;
+}
+
+.submit-button:hover {
+  transition: all 0.2s ease-in;
 }

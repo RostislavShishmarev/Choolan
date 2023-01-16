@@ -1,7 +1,21 @@
 body {
+  margin: 0;
   margin-left: auto;
   margin-right: auto;
   font-family: Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  /* Чтобы занимал оставшееся пространство */
+  flex-grow: 1;
+}
+
+footer {
+  /* Чтобы footer не уменьшался */
+  flex-shrink: 0;
 }
 
 a {
@@ -42,9 +56,27 @@ input {
 
 .ch-link {
   border: none;
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .ch-link:hover {
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.ch-text-input {
+  width: fit-content;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.ch-text-input:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
