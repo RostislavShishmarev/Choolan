@@ -1,23 +1,41 @@
 {% extends "Base.html" %} {% block content %}
 <div class="container">
-    <div class="main-section">
-        <div class="main-section-nav">
-            <div class="nav-container">
-                <a class="ch-link nav-link nav-link-other" href="/get">Взять</a>
-                <a class="ch-link nav-link nav-link-chosen" href="/put">Положить</a>
-            </div>
-        </div>
-        <div class="main-section-form">
-            <form class="m-file-form">
-                <input type="file" required="true" />
-                <div class="hour-input-container">
-                    <p class="hour-input-text">Сохранить на</p>
-                    <input type="number" class="ch-text-input" min="1" max="24" value="1" />
-                    <p class="hour-input-text">час (а/ов)</p>
-                </div>
-                <input type="submit" class="submit-button" value="Загрузить"/>
-            </form>
-        </div>
+  <div class="main-section">
+    <div class="main-section-nav">
+      <div class="nav-container">
+        <a class="ch-link nav-link nav-link-other" href="/get">Взять</a>
+        <a class="ch-link nav-link nav-link-chosen" href="/put">Положить</a>
+      </div>
     </div>
+    <div class="main-section-form">
+      <form class="m-file-form">
+        <div class="ch-file-input-placeholder">
+          <input
+            type="file"
+            id="ch-file-input"
+            class="ch-file-input"
+          />
+          <label for="ch-file-input" class="ch-file-input-block">
+            <span class="ch-file-input-button">+</span>
+            <span class="ch-file-input-text"
+              >Добавить файл</span
+            >
+          </label>
+        </div>
+        <div class="hour-input-container">
+          <p class="hour-input-text">Сохранить на</p>
+          <input
+            type="number"
+            class="ch-text-input hour-text-input"
+            min="1"
+            max="24"
+            value="1"
+          />
+          <p class="hour-input-text">час (а/ов)</p>
+        </div>
+        <input type="submit" class="submit-button" value="Загрузить" />
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock %}

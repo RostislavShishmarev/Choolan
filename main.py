@@ -30,6 +30,11 @@ def put():
     return render_template('Put.html')
 
 
+@app.route('/uploaded', methods=['GET'])
+def uploaded():
+    return render_template('Uploaded.html')
+
+
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('About.html')

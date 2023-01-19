@@ -52,6 +52,11 @@
   width: 60%;
 }
 
+.hour-text-input {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .submit-button {
   width: fit-content;
   border: none;
@@ -59,8 +64,42 @@
   border-width: 2px;
   border-radius: 5px;
   transition: all 0.2s ease-in;
+  margin-top: 10px;
 }
 
 .submit-button:hover {
   transition: all 0.2s ease-in;
+}
+
+.hour-input-container {
+  display: flex;
+  justify-content: flex-start;
+  max-height: 28px;
+}
+
+.hour-input-text {
+  margin: 0;
+  padding: 0;
+}
+
+.main-section-success {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 15%;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success-link {
+  font-size: 40px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.success-text {
+  font-size: 30px;
+  align-self: center;
 }

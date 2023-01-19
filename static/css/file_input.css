@@ -1,0 +1,42 @@
+.ch-file-input-placeholder {
+  position: relative;
+  text-align: center;
+  width: fit-content;
+}
+
+.ch-file-input {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.ch-file-input-block {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.ch-file-input-button {
+  text-decoration: none;
+  font-size: 45px;
+  color: #baae9b;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 50%;
+  transition: all 0.2s ease-in;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.ch-file-input-button:hover {
+  color: #faf6eb;
+  background-color: #bdb3a278;
+}
+
+.ch-file-input-text {
+  font-family: Roboto, sans-serif;
+  color: #e8e8e8;
+  font-size: 25px;
+  margin-left: 8px;
+}
