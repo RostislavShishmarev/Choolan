@@ -66,5 +66,42 @@
 
 .FOOT {
   padding-top: 30px;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.support-foot-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.email-block {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.email-block .foot-text:last-child {
+  font-size: 15px;
+  align-self: center;
+}
+
+.about-foot-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.foot-text {
+  font-size: 18px;
+  width: fit-content;
+  margin: 5px;
+  text-align: center;
 }

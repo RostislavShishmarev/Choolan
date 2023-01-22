@@ -22,3 +22,20 @@
     padding-left: 10px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .email-block .foot-text:last-child {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .foot {
+    flex-direction: column;
+  }
+
+  .about-foot-block {
+    margin-top: 10px;
+    align-items: flex-start;
+  }
+}

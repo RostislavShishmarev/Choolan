@@ -93,6 +93,10 @@ body {
   background-color: #bdb3a23c;
 }
 
+.foot-text {
+  color: #baae9b;
+}
+
 *::-webkit-scrollbar-corner {
   background-color: #2b2b2b;
 }
