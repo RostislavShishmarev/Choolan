@@ -35,6 +35,11 @@ def uploaded():
     return render_template('Uploaded.html')
 
 
+@app.route('/found', methods=['GET'])
+def found():
+    return render_template('Found.html')
+
+
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('About.html')

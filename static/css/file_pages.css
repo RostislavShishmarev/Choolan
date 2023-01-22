@@ -130,5 +130,39 @@
 .copy-message {
   margin-left: 5px;
   font-size: 18px;
-  color: #baae9b;
+}
+
+.look-or-load-section {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-self: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.look-or-load-section a:first-child {
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  clip-path: inset(-5px 0px -5px -5px);
+}
+
+.look-or-load-section a:last-child {
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  clip-path: inset(-5px -5px -5px 0px);
+}
+
+.result-button {
+  font-size: 30px;
+  padding: 5px;
+  text-align: center;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.result-button:hover {
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.75);
 }

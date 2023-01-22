@@ -77,6 +77,22 @@ body {
   stroke: #47b8d1;
 }
 
+.copy-message {
+  color: #baae9b;
+}
+
+.result-button {
+  color: #d6d2c7;
+  border-color: #d6d2c7;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.1s ease;
+}
+
+.result-button:hover {
+  color: white;
+  background-color: #bdb3a23c;
+}
+
 *::-webkit-scrollbar-corner {
   background-color: #2b2b2b;
 }

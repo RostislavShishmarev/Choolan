@@ -5,7 +5,7 @@ function copyFrom(id, message_id) {
     el.innerHTML = "";
   }
 
-  element = document.getElementById(id);
+  let element = document.getElementById(id);
   try {
     navigator.clipboard.writeText(element.value);
     console.log("Used normal copy method.");
@@ -16,7 +16,7 @@ function copyFrom(id, message_id) {
     console.log("Used deprecated copy method.");
   }
 
-  info = document.getElementById(message_id);
+  let info = document.getElementById(message_id);
   info.innerHTML = "Скопировано!";
   setTimeout(() => {
     info.innerHTML = "";

@@ -1,0 +1,18 @@
+{% extends "Base.html" %} {% block content %}
+<div class="container">
+  <div class="main-section">
+    <div class="main-section-success">
+      <a class="ch-link success-link" href="/get">&lt</a>
+      <div class="success-text">Файл file.png</div>
+    </div>
+    <div class="look-or-load-section">
+        <a href="" download="" class="result-button">Скачать</a>
+        <a href="/about" target="_blanc" class="result-button">Посмотреть</a>
+    </div>
+    <div class="main-section-info">
+        Будет храниться ещё 3 часа.
+    </div>
+  </div>
+</div>
+<script src="../static/js/regulate_button_width.js"></script>
+{% endblock %}
