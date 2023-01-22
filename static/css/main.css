@@ -69,9 +69,10 @@ input {
   border-style: solid;
 }
 
-.ch-text-input:focus {
+.ch-text-input:focus, .copy-button:hover, .result-text-input:hover {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+  z-index: 2;
 }
 
 input::-webkit-outer-spin-button,

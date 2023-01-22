@@ -17,4 +17,8 @@
   .main-section-success {
     padding-left: 0px;
   }
+
+  .main-section-info {
+    padding-left: 10px;
+  }
 }

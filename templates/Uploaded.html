@@ -2,9 +2,91 @@
 <div class="container">
   <div class="main-section">
     <div class="main-section-success">
-        <a class="ch-link success-link" href="/put">&lt</a>
-        <div class="success-text">Успешно загружено!</div>
+      <a class="ch-link success-link" href="/put">&lt</a>
+      <div class="success-text">Успешно загружено!</div>
+    </div>
+    <div class="main-section-info">
+      <div class="result-block">
+        <p class="result-text">Ваш код:</p>
+        <div class="value-result-block">
+          <input
+            id="key-result-input"
+            type="text"
+            class="ch-text-input key-text-input result-text-input"
+            readonly
+            value="a0bdf6"
+          />
+          <button class="copy-button" onClick="copyFrom('key-result-input', 'key-copy-message');">
+            <svg
+              width="20"
+              height="20"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-0.5 -0.5 19 19"
+            >
+              <rect
+                class="copy-rect f-copy-rect"
+                x="0.5"
+                y="0.5"
+                width="14"
+                height="14"
+              />
+              <rect
+                class="copy-rect s-copy-rect"
+                x="4"
+                y="4"
+                width="14"
+                height="14"
+                stroke-location="center"
+              />
+            </svg>
+          </button>
+          <div id="key-copy-message" class="copy-message"></div>
+        </div>
+      </div>
+      <div class="result-block">
+        <p class="result-text">Ссылка:</p>
+        <div class="value-result-block">
+          <input
+            id="link-result-input"
+            type="text"
+            class="ch-text-input key-text-input result-text-input"
+            readonly
+            value="https://choolan.pythonanywhere.com/files/a0bdf6/file.png"
+          />
+          <button class="copy-button" onClick="copyFrom('link-result-input', 'link-copy-message');">
+            <svg
+              width="20"
+              height="20"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-0.5 -0.5 19 19"
+            >
+              <rect
+                class="copy-rect f-copy-rect"
+                x="0.5"
+                y="0.5"
+                width="14"
+                height="14"
+              />
+              <rect
+                class="copy-rect s-copy-rect"
+                x="4"
+                y="4"
+                width="14"
+                height="14"
+                stroke-location="center"
+              />
+            </svg>
+          </button>
+          <div id="link-copy-message" class="copy-message"></div>
+        </div>
+      </div>
+      <div class="result-block">
+        <p class="result-text">
+          Будут гарантированно действовать в течение 5 часов.
+        </p>
+      </div>
     </div>
   </div>
 </div>
+<script src="../static/js/copy.js"></script>
 {% endblock %}
