@@ -1,7 +1,9 @@
 # My
 static/favicon.ico
-static/img/*
+static/img/
 static/logotype.py
+db/
+files/
 
 
 # Byte-compiled / optimized / DLL files

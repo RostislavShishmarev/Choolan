@@ -8,23 +8,28 @@
       </div>
     </div>
     <div class="main-section-form">
-      <form class="m-file-form">
-        <div class="ch-file-input-placeholder">
-          <input
-            type="file"
-            id="ch-file-input"
-            class="ch-file-input"
-          />
-          <label for="ch-file-input" class="ch-file-input-block">
-            <span class="ch-file-input-button">+</span>
-            <span class="ch-file-input-text"
-              >Добавить файл</span
-            >
-          </label>
+      <form method="POST" class="m-file-form" enctype="multipart/form-data">
+        <div>
+          <div class="ch-file-input-placeholder">
+            <input
+              name="loaded_file"
+              type="file"
+              id="ch-file-input"
+              class="ch-file-input"
+            />
+            <label for="ch-file-input" class="ch-file-input-block">
+              <span class="ch-file-input-button">+</span>
+              <span class="ch-file-input-text"
+                >Добавить файл</span
+              >
+            </label>
+          </div>
+          <div class="error-message-block none"></div>
         </div>
         <div class="hour-input-container">
           <p class="hour-input-text">Сохранить на</p>
           <input
+            name="life_hours"
             type="number"
             class="ch-text-input hour-text-input"
             min="1"
@@ -33,7 +38,7 @@
           />
           <p class="hour-input-text">час (а/ов)</p>
         </div>
-        <input type="submit" class="submit-button" value="Загрузить" />
+        <input name="submit" type="submit" class="submit-button" value="Загрузить" />
       </form>
     </div>
   </div>

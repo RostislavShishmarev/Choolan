@@ -63,6 +63,17 @@ body {
   background-color: #bdb3a23c;
 }
 
+.fast-submit-button:hover {
+  color: #bf2436;
+  border-color: #bf2436;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.error-message-block {
+  color: #d12d17;
+  border-color: #b53422;
+}
+
 .copy-button {
   background-color: #1a1917;
   border-color: #4a4845;

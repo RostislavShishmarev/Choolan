@@ -63,7 +63,11 @@
   border-style: solid;
   border-width: 2px;
   border-radius: 5px;
+  margin-top: 0px;
   transition: all 0.2s ease-in;
+}
+
+.fast-submit-button {
   margin-top: 10px;
 }
 
@@ -80,6 +84,12 @@
 .hour-input-text {
   margin: 0;
   padding: 0;
+}
+
+.error-message-block {
+  border-style: dotted;
+  border-width: 2px;
+  margin-top: 5px;
 }
 
 .main-section-success {

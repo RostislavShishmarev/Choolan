@@ -8,6 +8,10 @@ body {
   min-height: 100vh;
 }
 
+.none {
+  display: none;
+}
+
 main {
   /* Чтобы занимал оставшееся пространство */
   flex-grow: 1;

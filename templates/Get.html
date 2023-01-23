@@ -8,9 +8,13 @@
             </div>
         </div>
         <div class="main-section-form">
-            <form class="m-file-form">
-                <input type="text" class="ch-text-input key-text-input" placeholder="Введите ключ..." required="true" />
-                <input type="submit" class="submit-button" value="Найти"/>
+            <form method="POST" class="m-file-form">
+                <div>
+                    <input type="text" class="ch-text-input key-text-input" placeholder="Введите ключ..." required="true" />
+                    <div class="error-message-block none"></div>
+                </div>
+                <input type="submit" class="submit-button fast-submit-button" value="Скачать сразу"/>
+                <input type="submit" class="submit-button safe-submit-button" value="Сначала проверить"/>
             </form>
         </div>
     </div>
