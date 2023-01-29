@@ -10,12 +10,16 @@ from data.files import File
 SYMBOLS = list('1234567890!@#$%^&*()~`-=_+ qwertyuiop[]asdfghjkl;zxcvbnm,./\
 QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?')
 ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz"
+BAD_CHARS = {' ', '/', '\\', '&', '?', '@', '"', "'", '(', ')'}
 _DEFAULT = int('abcdef', 36)
 _MAX = int('zzzzzz', 36)
 
 _word_analyzer = MorphAnalyzer()
 WORD_HOUR = _word_analyzer.parse('час')[0]
 WORD_MINUTE = _word_analyzer.parse('минута')[0]
+
+lg.basicConfig(level='INFO',
+               format='%(asctime)s %(levelname)s %(filename)s %(message)s')
 
 
 class Session:
@@ -58,7 +62,8 @@ class Errors:
     NO_FILE = 'Вы не выбрали файл.'
     SAVE_ERROR = 'Не удалось сохранить файл. \
 Попробуйте другой файл или повторите попытку позже.'
-    FILE_NOT_FOUND = 'Файл под таким ключом не найден. Вы уверены, что он верный?'
+    FILE_NOT_FOUND = 'Файл под таким ключом не найден. \
+Вы уверены, что он верный?'
 
 
 # Генерация ключа для формы
@@ -94,5 +99,11 @@ def get_life_time(date):
     hours = int(secs // 3600)
     minutes = int(secs % 3600 // 60)
     return f'\
-{hours} {WORD_HOUR.make_agree_with_number(hours).word} \
-{minutes} {WORD_MINUTE.make_agree_with_number(minutes).word}'
+{hours} {WORD_HOUR.inflect({"accs"}).make_agree_with_number(hours).word} \
+{minutes} {WORD_MINUTE.inflect({"accs"}).make_agree_with_number(minutes).word}'
+
+
+def format_file_name(name):
+    for char in BAD_CHARS:
+        name = name.replace(char, '_')
+    return name
