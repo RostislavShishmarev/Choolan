@@ -14,7 +14,7 @@
             type="text"
             class="ch-text-input key-text-input result-text-input"
             readonly
-            value="a0bdf6"
+            value="{{ file_info.key }}"
           />
           <button class="copy-button" onClick="copyFrom('key-result-input', 'key-copy-message');">
             <svg
@@ -51,7 +51,7 @@
             type="text"
             class="ch-text-input key-text-input result-text-input"
             readonly
-            value="https://choolan.pythonanywhere.com/files/a0bdf6/file.png"
+            value="{{ file_info.link }}"
           />
           <button class="copy-button" onClick="copyFrom('link-result-input', 'link-copy-message');">
             <svg
@@ -82,7 +82,7 @@
       </div>
       <div class="result-block">
         <p class="result-text">
-          Будут гарантированно действовать в течение 5 часов.
+          Будут гарантированно действовать в течение {{ file_info.hours }} {{ word_hour_form }}.
         </p>
       </div>
     </div>

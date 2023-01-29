@@ -1,5 +1,7 @@
+import flask as fl
 import logging as lg
 from random import choices
+from pymorphy2 import MorphAnalyzer
 
 from data import db_session as d_s
 from data.files import File
@@ -9,6 +11,36 @@ QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?')
 ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz"
 _DEFAULT = int('abcdef', 36)
 _MAX = int('zzzzzz', 36)
+
+_word_analyzer = MorphAnalyzer()
+WORD_HOUR = _word_analyzer.parse('час')[0]
+
+
+class Session:
+    _ADDED_FILE_INFO = 'added_file_info'
+
+    class Saver:
+        def __init__(self, **attrs):
+            for key, val in attrs.items():
+                setattr(self, key, val)
+
+    def get_added_file_info(self):
+        if Session._ADDED_FILE_INFO not in fl.session:
+            return None
+        return Session.Saver(**fl.session[Session._ADDED_FILE_INFO])
+
+    def set_added_file_info(self, name, key, link, hours: int):
+        fl.session[Session._ADDED_FILE_INFO] = {
+            'name': name,
+            'key': key,
+            'link': link,
+            'hours': hours,
+        }
+
+
+class Errors:
+    NO_FILE = 'Вы не выбрали файл.'
+    SAVE_ERROR = 'Не удалось сохранить файл. Попробуйте другой файл или повторите попытку позже.'
 
 
 # Генерация ключа для формы
