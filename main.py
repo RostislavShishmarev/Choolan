@@ -1,7 +1,6 @@
 import os
 import shutil
 import datetime as dt
-import requests as rq
 import flask as fl
 from flask import render_template, request, redirect, send_from_directory
 
@@ -9,8 +8,9 @@ from data import db_session as d_s
 from data.files import File
 
 from helpers import lg, generate_secret_key, generate_file_key, Errors,\
-    Session, WORD_HOUR
+    Session, WORD_HOUR, get_life_time
 
+PROTOCOL = 'http'
 SITE_DOMAIN = '127.0.0.1:8080'
 app = fl.Flask(__name__)
 key = generate_secret_key()
@@ -28,11 +28,33 @@ def favicon():
                                mimetype='image/vnd.microsoft.icon')
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/get', methods=['GET', 'POST'])
 def get():
     if request.method == 'POST':
-        pass
+        key = request.form['file_key']
+        db_sess = d_s.create_session()
+        file = db_sess.query(File).filter(File.key == key).first()
+        if file is None:
+            return render_template('Get.html',
+                                   error_text=Errors.FILE_NOT_FOUND,
+                                   form_data=request.form)
+        life_time = get_life_time(file.death_date)
+        if life_time is None:
+            delete_file(file.key)
+            return render_template('Get.html',
+                                   error_text=Errors.FILE_NOT_FOUND,
+                                   form_data=request.form)
+        user_session.set_found_file_info(
+            name=file.name,
+            key=file.key,
+            link=file.link,
+            life_time=life_time
+        )
+        if request.form['method'] == 'check_it':
+            return redirect('/found')
+        elif request.form['method'] == 'download_it':
+            return redirect('/found?download=true')
     return render_template('Get.html')
 
 
@@ -44,12 +66,12 @@ def put():
 
         if not file:
             return render_template('Put.html', error_text=Errors.NO_FILE,
-                                   hour_value=hours)
+                                   form_data=request.form)
 
         key = generate_file_key()
         path = f'files/{key}'
         name = file.filename
-        link = f'https://{SITE_DOMAIN}/' + path + '/' + name
+        link = f'{PROTOCOL}://{SITE_DOMAIN}/' + path + '/' + name
         death_date = dt.datetime.today() + dt.timedelta(hours=hours)
 
         try:
@@ -59,7 +81,7 @@ def put():
             lg.error("Could not save file: " + str(ex))
             shutil.rmtree(path, ignore_errors=True)
             return render_template('Put.html', error_text=Errors.SAVE_ERROR,
-                                   hour_value=hours)
+                                   form_data=request.form)
 
         db_session = d_s.create_session()
         file = File(key=key,
@@ -88,12 +110,25 @@ def uploaded():
 
 @app.route('/found', methods=['GET'])
 def found():
-    return render_template('Found.html')
+    download = 'download' in request.args.keys()
+    file_info = user_session.get_found_file_info()
+    print(file_info.link)
+    return render_template('Found.html', download=download,
+                           file_info=file_info)
+
+
+@app.route('/files/<path:path>')
+def get_file(path):
+    return fl.send_from_directory('files', path)
 
 
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('About.html')
+
+
+def delete_file(key):
+    pass
 
 
 if __name__ == '__main__':

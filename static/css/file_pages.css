@@ -75,6 +75,38 @@
   transition: all 0.2s ease-in;
 }
 
+.radio-buttons-container * {
+  margin-bottom: 5px;
+}
+
+.radio-button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.radio-button-container input {
+  display: none;
+}
+
+.radio-button-container label {
+  font-size: 18px;
+  text-align: center;
+}
+
+.radio-button-container label:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  bottom: -5px;
+  width: 17px;
+  height: 17px;
+  margin-right: 5px;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+}
+
 .hour-input-container {
   display: flex;
   justify-content: flex-start;

@@ -3,16 +3,22 @@
   <div class="main-section">
     <div class="main-section-success">
       <a class="ch-link success-link" href="/get">&lt</a>
-      <div class="success-text">Файл file.png</div>
+      <div class="success-text">Файл {{ file_info.name }}</div>
     </div>
     <div class="look-or-load-section">
-        <a href="" download="" class="result-button">Скачать</a>
-        <a href="/about" target="_blanc" class="result-button">Посмотреть</a>
+        <a id="download_link" href="{{ file_info.link }}" download="" class="result-button">Скачать</a>
+        <a href="{{ file_info.link }}" target="_blanc" class="result-button">Посмотреть</a>
     </div>
     <div class="main-section-info">
-        Будет храниться ещё 3 часа.
+        Будет храниться ещё {{ file_info.life_time }}.
     </div>
   </div>
 </div>
+{% if download %}
+<script>
+  let link = document.getElementById('download_link');
+  link.click();
+</script>
+{% endif %}
 <script src="../static/js/found_page.js"></script>
 {% endblock %}

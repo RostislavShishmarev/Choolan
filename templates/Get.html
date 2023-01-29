@@ -9,12 +9,35 @@
         </div>
         <div class="main-section-form">
             <form method="POST" class="m-file-form">
+                {% if form_data is defined %}
+                  {% set key = form_data['file_key'] %}
+                {% else %}
+                {% set key = "" %}
+                {% endif %}
                 <div>
-                    <input type="text" class="ch-text-input key-text-input" placeholder="Введите ключ..." required="true" />
-                    <div class="error-message-block none"></div>
+                    <input name="file_key" type="text" class="ch-text-input key-text-input" placeholder="Введите ключ..." required="true" value="{{ key }}" />
                 </div>
-                <input type="submit" class="submit-button fast-submit-button" value="Скачать сразу"/>
-                <input type="submit" class="submit-button safe-submit-button" value="Сначала проверить"/>
+                {% if error_text is defined %}
+                    <div class="error-message-block">{{ error_text }}</div>
+                {% endif %}
+                <div class="radio-buttons-container">
+                    {% if form_data is defined and form_data['method'] == 'check_it' %}
+                    {% set first_checked = "" %}
+                    {% set second_checked = "checked" %}
+                    {% else %}
+                    {% set first_checked = "checked" %}
+                    {% set second_checked = "" %}
+                    {% endif %}
+                    <div class="radio-button-container">
+                        <input id="radio-1" name="method" type="radio" value="download_it" {{ first_checked }} />
+                        <label for="radio-1">Скачать сразу!</label>
+                    </div>
+                    <div class="radio-button-container">
+                        <input id="radio-2" name="method" type="radio" value="check_it" {{ second_checked }} />
+                        <label for="radio-2">Сначала проверить</label>
+                    </div>
+                </div>
+                <input type="submit" class="submit-button safe-submit-button" value="Найти"/>
             </form>
         </div>
     </div>

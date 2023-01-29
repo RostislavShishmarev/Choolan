@@ -51,6 +51,24 @@ body {
   border-color: #bdbdbd;
 }
 
+.radio-button-container label {
+  color: #e3e3e3
+}
+
+.radio-button-container label:before {
+  border-color: #b89d16;
+}
+
+.radio-button-container input:checked + label:before {
+  background-color: #b89d16;
+  border-color: rgba(0, 0, 0);
+}
+
+.radio-button-container label:hover:before {
+  border-color: #ffd503;
+}
+
+
 .submit-button {
   color: #a8a8a8;
   border-color: #a8a8a8;

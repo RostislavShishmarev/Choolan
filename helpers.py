@@ -1,3 +1,4 @@
+import datetime as dt
 import flask as fl
 import logging as lg
 from random import choices
@@ -14,10 +15,12 @@ _MAX = int('zzzzzz', 36)
 
 _word_analyzer = MorphAnalyzer()
 WORD_HOUR = _word_analyzer.parse('час')[0]
+WORD_MINUTE = _word_analyzer.parse('минута')[0]
 
 
 class Session:
     _ADDED_FILE_INFO = 'added_file_info'
+    _FOUND_FILE_INFO = 'found_file_info'
 
     class Saver:
         def __init__(self, **attrs):
@@ -37,10 +40,25 @@ class Session:
             'hours': hours,
         }
 
+    def get_found_file_info(self):
+        if Session._FOUND_FILE_INFO not in fl.session:
+            return None
+        return Session.Saver(**fl.session[Session._FOUND_FILE_INFO])
+
+    def set_found_file_info(self, name, key, link, life_time):
+        fl.session[Session._FOUND_FILE_INFO] = {
+            'name': name,
+            'key': key,
+            'link': link,
+            'life_time': life_time,
+        }
+
 
 class Errors:
     NO_FILE = 'Вы не выбрали файл.'
-    SAVE_ERROR = 'Не удалось сохранить файл. Попробуйте другой файл или повторите попытку позже.'
+    SAVE_ERROR = 'Не удалось сохранить файл. \
+Попробуйте другой файл или повторите попытку позже.'
+    FILE_NOT_FOUND = 'Файл под таким ключом не найден. Вы уверены, что он верный?'
 
 
 # Генерация ключа для формы
@@ -66,3 +84,15 @@ def generate_file_key():
         num_key //= 36
         result = ALPHABET[index] + result
     return result
+
+
+def get_life_time(date):
+    delta = date - dt.datetime.today()
+    secs = delta.total_seconds()
+    if secs < 0:
+        return
+    hours = int(secs // 3600)
+    minutes = int(secs % 3600 // 60)
+    return f'\
+{hours} {WORD_HOUR.make_agree_with_number(hours).word} \
+{minutes} {WORD_MINUTE.make_agree_with_number(minutes).word}'

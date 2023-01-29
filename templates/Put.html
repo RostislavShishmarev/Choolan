@@ -33,8 +33,8 @@
             class="ch-text-input hour-text-input"
             min="1"
             max="24"
-            {% if hour_value is defined %}
-            value="{{ hour_value }}"
+            {% if form_data is defined %}
+            value="{{ form_data['life_hours'] }}"
             {% else %}
             value="1"
             {% endif %}
