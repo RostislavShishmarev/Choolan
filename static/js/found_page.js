@@ -3,8 +3,8 @@ function updateFirstButtonWidth(event) {
     if (container === null) {
         return;
     }
-    let width = container.lastElementChild.clientWidth;
-    container.firstElementChild.setAttribute("style", `width:${width}px;`);;
+    let width = container.lastElementChild.clientWidth + 4;
+    container.firstElementChild.setAttribute("style", `min-width:${width}px;`);;
 }
 
 

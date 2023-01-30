@@ -8,17 +8,19 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from data import db_session as d_s
 from data.files import File
 
-from helpers import lg, generate_secret_key, generate_file_key, Errors,\
-    Session, WORD_HOUR, get_life_time, format_file_name
+import helpers as hl
+from helpers import lg, Errors
 
-PROTOCOL = 'http'
-SITE_DOMAIN = '127.0.0.1:8080'
+config = hl.parse_config_file('config.txt')
+PROTOCOL = config['protocol']
+SITE_DOMAIN = config['domain']
 app = fl.Flask(__name__)
-key = generate_secret_key()
-app.config['SECRET_KEY'] = key
+app.config['SECRET_KEY'] = hl.generate_secret_key()
 app.config['JSON_AS_ASCII'] = False
 
-user_session = Session()
+user_session = hl.Session()
+
+d_s.global_init('db/ch_files.sqlite')
 
 
 @app.route('/favicon.ico')
@@ -32,19 +34,22 @@ def favicon():
 @app.route('/get', methods=['GET', 'POST'])
 def get():
     if request.method == 'POST':
-        key = request.form['file_key']
+        file_key = hl.format_file_key(request.form['file_key'])
         db_sess = d_s.create_session()
-        file = db_sess.query(File).filter(File.key == key).first()
+        file = db_sess.query(File).filter(File.key == file_key).first()
         if file is None:
             return render_template('Get.html',
                                    error_text=Errors.FILE_NOT_FOUND,
                                    form_data=request.form)
-        life_time = get_life_time(file.death_date)
+        life_time = hl.get_life_time(file.death_date)
         if life_time is None:
-            delete_file(file)
+            db_sess.delete(file)
+            delete_real_file(file)
+            db_sess.commit()
             return render_template('Get.html',
                                    error_text=Errors.FILE_NOT_FOUND,
                                    form_data=request.form)
+
         user_session.set_found_file_info(
             name=file.name,
             key=file.key,
@@ -68,9 +73,9 @@ def put():
             return render_template('Put.html', error_text=Errors.NO_FILE,
                                    form_data=request.form)
 
-        key = generate_file_key()
-        path = f'files/{key}'
-        name = format_file_name(file.filename)
+        file_key = hl.generate_file_key()
+        path = f'files/{file_key}'
+        name = hl.format_file_name(file.filename)
         link = f'{PROTOCOL}://{SITE_DOMAIN}/' + path + '/' + name
         death_date = dt.datetime.today() + dt.timedelta(hours=hours)
 
@@ -84,7 +89,7 @@ def put():
                                    form_data=request.form)
 
         db_session = d_s.create_session()
-        file = File(key=key,
+        file = File(key=file_key,
                     name=name,
                     folder_path=path,
                     link=link,
@@ -92,7 +97,12 @@ def put():
         db_session.add(file)
         db_session.commit()
 
-        user_session.set_added_file_info(name, key, link, hours)
+        user_session.set_added_file_info(
+            name=name,
+            key=file_key,
+            link=link,
+            hours=hours
+        )
         return redirect('/uploaded')
     return render_template('Put.html')
 
@@ -102,7 +112,7 @@ def uploaded():
     file_info = user_session.get_added_file_info()
     if file_info is None:
         fl.abort(404)
-    word_hour_form = WORD_HOUR.inflect(
+    word_hour_form = hl.WORD_HOUR.inflect(
         {'gent'}).make_agree_with_number(file_info.hours).word
     return render_template('Uploaded.html', file_info=file_info,
                            word_hour_form=word_hour_form)
@@ -111,6 +121,20 @@ def uploaded():
 @app.route('/found', methods=['GET'])
 def found():
     download = 'download' in request.args.keys()
+    file_info = user_session.get_found_file_info()
+    if file_info is None:
+        fl.abort(404)
+
+    # Update time and delete file if time is expired
+    db_sess = d_s.create_session()
+    file = db_sess.query(File).filter(File.key == file_info.key).first()
+    life_time = hl.get_life_time(file.death_date)
+    if life_time is None:
+        db_sess.delete(file)
+        delete_real_file(file)
+        db_sess.commit()
+        fl.abort(404)
+    user_session.update_found_file_info(life_time=life_time)
     file_info = user_session.get_found_file_info()
     return render_template('Found.html', download=download,
                            file_info=file_info)
@@ -131,10 +155,10 @@ def clean_files():
     db_sess = d_s.create_session()
     files = db_sess.query(File).all()
     for file in files:
-        time = get_life_time(file.death_date)
+        time = hl.get_life_time(file.death_date)
         if time is None:
             try:
-                delete_file(file)
+                delete_real_file(file)
             except Exception as ex:
                 lg.error(
                     f'Can not delete file {file.folder_path}/{file.name}: ' +
@@ -146,17 +170,16 @@ def clean_files():
     lg.info('Files cleaned successfully!')
 
 
-def delete_file(file):
+def delete_real_file(file):
     shutil.rmtree(file.folder_path)
     lg.debug(f'Successfully deleted file {file.folder_path}/{file.name}')
 
 
 if __name__ == '__main__':
-    d_s.global_init('db/ch_files.sqlite')
-
     scheduler = BackgroundScheduler()
-    job = scheduler.add_job(clean_files, 'interval', minutes=30)
+    job = scheduler.add_job(clean_files, 'interval',
+                            minutes=int(config['schedule_interval']))
     scheduler.start()
 
     port = int(os.environ.get("PORT", 8080))
-    app.run(host='127.0.0.1', port=port)
+    app.run(host=config['host'], port=port)

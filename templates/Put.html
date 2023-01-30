@@ -15,7 +15,7 @@
               name="loaded_file"
               type="file"
               id="ch-file-input"
-              class="ch-file-input"
+              class="ch-file-input none"
             />
             <label for="ch-file-input" class="ch-file-input-block">
               <span class="ch-file-input-button">+</span>
@@ -41,7 +41,9 @@
           />
           <p class="hour-input-text">час(а/ов)</p>
         </div>
-        <input name="submit" type="submit" class="submit-button" value="Загрузить" />
+        <div>
+          <input name="submit" type="submit" class="submit-button" value="Загрузить" />
+        </div>
         {% if error_text is defined %}
           <div class="error-message-block">{{ error_text }}</div>
         {% endif %}

@@ -36,6 +36,12 @@
   border-style: solid;
   border-radius: 30px;
   padding: 20px;
+  overflow: auto;
+}
+
+.main-section-form::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: none;  /* Optional: just make scrollbar invisible */
 }
 
 .m-file-form {
@@ -110,12 +116,14 @@
 .hour-input-container {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   max-height: 28px;
 }
 
 .hour-input-text {
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
 .error-message-block {
@@ -139,11 +147,14 @@
   padding-right: 12px;
   border-radius: 50%;
   margin-right: 20px;
+  max-height: 47px;
 }
 
 .success-text {
   font-size: 30px;
   align-self: center;
+  white-space: nowrap;
+  overflow: auto;
 }
 
 .main-section-info {

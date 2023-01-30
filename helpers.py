@@ -36,26 +36,36 @@ class Session:
             return None
         return Session.Saver(**fl.session[Session._ADDED_FILE_INFO])
 
-    def set_added_file_info(self, name, key, link, hours: int):
-        fl.session[Session._ADDED_FILE_INFO] = {
-            'name': name,
-            'key': key,
-            'link': link,
-            'hours': hours,
-        }
+    def set_added_file_info(self, **info_items):
+        fl.session[Session._ADDED_FILE_INFO] = {}
+        self._set_added_file_info_items(info_items)
+
+    def update_added_file_info(self, **info_items):
+        fl.session[Session._ADDED_FILE_INFO] = fl.session[
+            Session._ADDED_FILE_INFO].copy()
+        self._set_added_file_info_items(info_items)
+
+    def _set_added_file_info_items(self, info_items):
+        for key, val in info_items.items():
+            fl.session[Session._ADDED_FILE_INFO][key] = val
 
     def get_found_file_info(self):
         if Session._FOUND_FILE_INFO not in fl.session:
             return None
         return Session.Saver(**fl.session[Session._FOUND_FILE_INFO])
 
-    def set_found_file_info(self, name, key, link, life_time):
-        fl.session[Session._FOUND_FILE_INFO] = {
-            'name': name,
-            'key': key,
-            'link': link,
-            'life_time': life_time,
-        }
+    def set_found_file_info(self, **info_items):
+        fl.session[Session._FOUND_FILE_INFO] = {}
+        self._set_found_file_info_items(info_items)
+
+    def update_found_file_info(self, **info_items):
+        fl.session[Session._FOUND_FILE_INFO] = fl.session[
+            Session._FOUND_FILE_INFO].copy()
+        self._set_found_file_info_items(info_items)
+
+    def _set_found_file_info_items(self, info_items):
+        for key, val in info_items.items():
+            fl.session[Session._FOUND_FILE_INFO][key] = val
 
 
 class Errors:
@@ -66,9 +76,18 @@ class Errors:
 Вы уверены, что он верный?'
 
 
-# Генерация ключа для формы
 def generate_secret_key():
     return ''.join(choices(SYMBOLS, k=250))
+
+
+def parse_config_file(path):
+    with open(path, encoding='utf-8') as f:
+        data = f.read()
+    result = {}
+    for string in data.split('\n'):
+        key, val = string.split('==')
+        result[key] = val
+    return result
 
 
 def generate_file_key():
@@ -91,8 +110,8 @@ def generate_file_key():
     return result
 
 
-def get_life_time(date):
-    delta = date - dt.datetime.today()
+def get_life_time(death_date):
+    delta = death_date - dt.datetime.today()
     secs = delta.total_seconds()
     if secs < 0:
         return
@@ -107,3 +126,7 @@ def format_file_name(name):
     for char in BAD_CHARS:
         name = name.replace(char, '_')
     return name
+
+
+def format_file_key(key):
+    return key.replace(' ', '').replace('-', '').lower()

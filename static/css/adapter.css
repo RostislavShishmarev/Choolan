@@ -29,6 +29,22 @@
   }
 }
 
+@media screen and (max-width: 370px) {
+  .look-or-load-section a:first-child {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    clip-path: inset(-5px -5px 0px -5px);
+  }
+
+  .look-or-load-section a:last-child {
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    clip-path: inset(0px -5px -5px -5px);
+  }
+}
+
 @media screen and (max-width: 350px) {
   .foot {
     flex-direction: column;
@@ -37,5 +53,9 @@
   .about-foot-block {
     margin-top: 10px;
     align-items: flex-start;
+  }
+
+  .hour-input-container {
+    padding-bottom: 45px;
   }
 }

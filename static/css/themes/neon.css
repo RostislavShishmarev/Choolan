@@ -141,6 +141,6 @@ body {
 
 body::-webkit-scrollbar-thumb,
 .left-menu::-webkit-scrollbar-thumb {
-  background-color: #f78502;
+  background-color: #8a8a8a;
   border-color: black;
 }
