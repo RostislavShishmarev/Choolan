@@ -1,0 +1,85 @@
+.problem-block {
+  background-image: url(../img/bricks.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.problem-block div:first-child section,
+.solution-block div:first-child section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.problem-block div:last-child section,
+.solution-block div:last-child section {
+  padding-bottom: 50px;
+}
+
+section {
+  font-size: 22px;
+}
+
+.problem-block section {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  color: #d6d4cb;
+}
+
+.solution-block section {
+  padding-left: 4vw;
+  padding-right: 4vw;
+  color: #deddd9;
+}
+
+q {
+    font-style: italic;
+}
+
+.comparison-block {
+  background-image: url(../img/desks.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.comparison-table {
+  width: 100%;
+}
+
+.comparison-table td,
+.comparison-table th {
+  padding: 5px;
+  width: 50%;
+  vertical-align: top;
+}
+
+.comparison-table th {
+  padding-bottom: 15px;
+}
+
+.comparison-td {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 10px;
+}
+
+.comparison-td div {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.comparison-td div.plus {
+  color: green;
+}
+
+.comparison-td div.minus {
+  color: red;
+}
+
+.comparison-td p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.text-link {
+  text-decoration: underline;
+}

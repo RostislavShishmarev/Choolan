@@ -1,3 +1,127 @@
 {% extends "Base.html" %} {% block content %}
-
+<div class="problem-block">
+  <div class="container">
+    <section>
+      Наверное, каждому приходилось сталкиваться с ситуацией, что нужно
+      перенести файл с телефона на компьютер (или наоборот). Кабеля, как всегда,
+      под рукой нет, а заходить в почту или облако – долго и муторно. Что же
+      делать?
+    </section>
+  </div>
+  <div class="container">
+    <section>
+      <q
+        >Хорошо бы просто загрузить файл в одном месте и скачать в другом. Без
+        авторизации, восстановления пароля, QR-кодов и прочих радостей жизни</q
+      >
+      – думаете вы.
+    </section>
+  </div>
+</div>
+<div class="solution-block">
+  <div class="container">
+    <section>
+      Представляем вашему вниманию Чулан – сайт, где для доступа к файлу нужен
+      лишь короткий ключ. Главное – скорость. Всего 3 действия – и файл в
+      Чулане. Ещё 3 – и он уже на любом другом устройстве, где есть интернет.
+      Здорово, не правда ли?
+    </section>
+  </div>
+  <div class="container">
+    <section>
+      <q>Но ведь подобные сервисы уже есть!</q> – возразите вы. –
+      <q
+        >Я вполне могу перенести файл с помощью почты. В чём же преимущество
+        Чулана?</q
+      >
+      Давайте рассмотрим подробнее.
+    </section>
+  </div>
+</div>
+<div class="comparison-block">
+  <div class="container">
+    <table class="comparison-table">
+      <caption>
+        Сервисы
+      </caption>
+      <thead>
+        <tr>
+          <th>Почта / облако / WEB-мессенджер</th>
+          <th>Чулан</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3">
+            <div class="comparison-td">
+              <div class="plus">+</div>
+              <p>Безопасность файла</p>
+            </div>
+          </td>
+          <td>
+            <div class="comparison-td">
+              <div class="plus">+</div>
+              <p>Быстро и удобно</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comparison-td">
+              <div class="plus">+</div>
+              <p>
+                Ничего лишнего - только
+                <a href="/get" class="ch-link">взять</a> / 
+                <a href="/put" class="ch-link">положить</a>
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comparison-td">
+              <div class="plus">+</div>
+              <p>Без авторизации</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comparison-td">
+              <div class="minus">-</div>
+              <p>Авторизация занимает много времени</p>
+            </div>
+          </td>
+          <td rowspan="3">
+            <div class="comparison-td">
+              <div class="minus">-</div>
+              <p>Ваш файл может случайно скачать кто-то ещё</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comparison-td">
+              <div class="minus">-</div>
+              <p>Много лишних данных</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comparison-td">
+              <div class="minus">-</div>
+              <p>Небезопасно на чужом устройстве</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="conclusion-block">
+  <div class="container">
+    <section></section>
+  </div>
+</div>
 {% endblock %}
