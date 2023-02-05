@@ -175,7 +175,15 @@ def about():
 @app.route('/settings', methods=['GET', 'POST'])
 def settings_page():
     settings = hl.Settings(request)
-    return render_template('Settings.html', settings=settings)
+    if request.method == 'POST':
+        settings.theme = request.form["theme"]
+        settings.start_page = request.form["start_page"]
+        settings.get = request.form["get"]
+        settings.copy = request.form["copy"]
+    response = fl.make_response(render_template('Settings.html',
+                                                settings=settings))
+    settings.save(response)
+    return response
 
 
 def clean_files():

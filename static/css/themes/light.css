@@ -150,7 +150,8 @@ body {
 }
 
 .problem-block section,
-.conclusion-block section {
+.conclusion-block section,
+.about-settings-block section {
   color: #080807;
 }
 
