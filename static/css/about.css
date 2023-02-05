@@ -6,12 +6,6 @@ section {
   font-size: 22px;
 }
 
-.problem-block {
-  background-image: url(../img/bricks.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
 .problem-block section {
   padding-left: 2vw;
   padding-right: 2vw;
@@ -34,9 +28,6 @@ section {
 }
 
 .comparison-block {
-  background-image: url(../img/desks.jpg);
-  background-size: cover;
-  background-position: center;
   padding-top: 25px;
   padding-bottom: 40px;
   overflow: auto;

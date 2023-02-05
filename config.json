@@ -28,8 +28,11 @@
             ".no_deserialize": true,
             "neon": {
                 "name": "Неоновая",
-                "path": "../static/css/themes/neon.css",
-                "value": "neon"
+                "path": "../static/css/themes/neon.css"
+            },
+            "light": {
+                "name": "Светлая",
+                "path": "../static/css/themes/light.css"
             }
         },
         "start_page": {

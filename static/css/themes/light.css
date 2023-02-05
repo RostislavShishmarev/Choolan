@@ -1,0 +1,181 @@
+body {
+  color: #141312;
+  background-color: #ededed;
+}
+
+.HEAD {
+  background-color: #302b29;
+  border-bottom-color: #302b29;
+}
+
+.FOOT {
+  background-color: #ccc9bc;
+}
+
+.logo-text {
+  color: #e3d9c1;
+}
+
+.ch-link {
+  color: #3b3936;
+}
+
+.ch-link:hover,
+.ch-link:focus {
+  color: #292723;
+  background-color: #a8a7a299;
+}
+
+.head-link {
+  color: #baae9b;
+}
+
+.head-link:hover,
+.head-link:focus {
+  color: #faf6eb;
+  background-color: #bdb3a278;
+}
+
+.nav-link {
+  color: #363532;
+}
+
+.nav-link-chosen {
+  border-bottom-color: #363532;
+}
+
+.main-section-form {
+  border-color: #e5ae20;
+}
+
+.ch-text-input {
+  background-color: #d6d4d0;
+  border-color: #96938d;
+  color: #141413;
+}
+
+.ch-text-input::placeholder {
+  color: #6e6e6e;
+}
+
+.ch-text-input:focus {
+  border-color: #bdbdbd;
+}
+
+.radio-button-container label {
+  color: #141413;
+}
+
+.radio-button-container label:before {
+  border-color: #f2c00a;
+}
+
+.radio-button-container input:checked + label:before {
+  background-color: #f2c00a;
+  border-color: #52514b;
+}
+
+.radio-button-container label:hover:before {
+  border-color: #ffdf40;
+}
+
+.submit-button {
+  color: #2b2b2a;
+  border-color: #2b2b2a;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.submit-button:hover,
+.submit-button:focus {
+  color: #1c1c1a;
+  border-color: #1c1c1a;
+  background-color: #1c1c1b32;
+}
+
+.fast-submit-button:hover {
+  color: #bf2436;
+  border-color: #bf2436;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.error-message-block {
+  color: #d12d17;
+  border-color: #b53422;
+}
+
+.copy-button {
+  background-color: #d9d9d9;
+  border-color: #4a4845;
+}
+
+.copy-rect {
+  stroke: #1a1917;
+  fill: rgba(0, 0, 0, 0);
+}
+
+.copy-button:hover .copy-rect {
+  stroke: #47b8d1;
+}
+
+.copy-message {
+  color: #757472;
+}
+
+.result-button {
+  color: #696762;
+  border-color: #696762;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.1s ease;
+}
+
+.result-button:hover {
+  color: white;
+  background-color: #87857eaa;
+}
+
+.foot-text {
+  color: #3b3936;
+}
+
+.problem-block,
+.comparison-block {
+  background-image: url(../../img/triangles.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.problem-block section,
+.conclusion-block section {
+  color: #080807;
+}
+
+.solution-block section {
+  color: #000;
+}
+
+.comparison-table td,
+.comparison-table th {
+  border-color: #30302fcf;
+}
+
+.comparison-td div.plus {
+  color: #1fa80a;
+}
+
+.comparison-td div.minus {
+  color: #d4240d;
+}
+
+.ch-file-input-button {
+  color: #0a0a09;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.ch-file-input-button:hover {
+  color: #000;
+  background-color: #706f6c3c;
+}
+
+.ch-file-input-text {
+  color: #302f2b;
+}

@@ -130,6 +130,12 @@ body {
   color: #baae9b;
 }
 
+.problem-block {
+  background-image: url(../../img/bricks.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
 .problem-block section,
 .conclusion-block section {
   color: #d6d4cb;
@@ -137,6 +143,12 @@ body {
 
 .solution-block section {
   color: #deddd9;
+}
+
+.comparison-block {
+  background-image: url(../../img/desks.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .comparison-table td,
@@ -169,4 +181,18 @@ body::-webkit-scrollbar-thumb,
 .left-menu::-webkit-scrollbar-thumb {
   background-color: #8a8a8a;
   border-color: black;
+}
+
+.ch-file-input-button {
+  color: #baae9b;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.ch-file-input-button:hover {
+  color: #faf6eb;
+  background-color: #bdb3a278;
+}
+
+.ch-file-input-text {
+  color: #e8e8e8;
 }

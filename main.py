@@ -172,6 +172,12 @@ def about():
     return render_template('About.html', settings=settings)
 
 
+@app.route('/settings', methods=['GET', 'POST'])
+def settings_page():
+    settings = hl.Settings(request)
+    return render_template('Settings.html', settings=settings)
+
+
 def clean_files():
     lg.info('Start cleaning files...')
     db_sess = d_s.create_session()
