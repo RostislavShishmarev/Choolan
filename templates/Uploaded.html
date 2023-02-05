@@ -89,4 +89,13 @@
   </div>
 </div>
 <script src="../static/js/uploaded_page.js"></script>
+{% if settings.copy == "key" %}
+<script>
+  copyFrom('key-result-input', 'key-copy-message');
+</script>
+{% elif settings.copy == "link" %}
+<script>
+  copyFrom('link-result-input', 'link-copy-message');
+</script>
+{% endif %}
 {% endblock %}

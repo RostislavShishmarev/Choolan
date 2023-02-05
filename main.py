@@ -1,6 +1,7 @@
 import os
 import shutil
 import datetime as dt
+import logging as lg
 import flask as fl
 from flask import render_template, request, redirect, send_from_directory
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -9,18 +10,22 @@ from data import db_session as d_s
 from data.files import File
 
 import helpers as hl
-from helpers import lg, Errors
+from helpers import Errors, CONFIG
 
-config = hl.parse_config_file('config.txt')
-PROTOCOL = config['protocol']
-SITE_DOMAIN = config['domain']
 app = fl.Flask(__name__)
 app.config['SECRET_KEY'] = hl.generate_secret_key()
 app.config['JSON_AS_ASCII'] = False
 
+lg.basicConfig(level=CONFIG.base.logging_level,
+               format=CONFIG.base.logging_format)
+
+for dir_ in CONFIG.base.necessary_dirs:
+    if not os.path.exists(dir_):
+        os.makedirs(dir_)
+
 user_session = hl.Session()
 
-d_s.global_init('db/ch_files.sqlite')
+d_s.global_init(CONFIG.base.db_path)
 
 
 @app.route('/favicon.ico')
@@ -31,14 +36,23 @@ def favicon():
 
 
 @app.route('/', methods=['GET', 'POST'])
+def main():
+    settings = hl.Settings(request)
+    # Получаем объект стартовой страницы по ключу из настроек:
+    start_page = CONFIG.settings.start_page[settings.start_page]
+    # Переходим по ссылке, хранящейся в этом объекте:
+    return redirect(start_page.link)
+
+
 @app.route('/get', methods=['GET', 'POST'])
 def get():
+    settings = hl.Settings(request)
     if request.method == 'POST':
         file_key = hl.format_file_key(request.form['file_key'])
         db_sess = d_s.create_session()
         file = db_sess.query(File).filter(File.key == file_key).first()
         if file is None:
-            return render_template('Get.html',
+            return render_template('Get.html', settings=settings,
                                    error_text=Errors.FILE_NOT_FOUND,
                                    form_data=request.form)
         life_time = hl.get_life_time(file.death_date)
@@ -46,7 +60,7 @@ def get():
             db_sess.delete(file)
             delete_real_file(file)
             db_sess.commit()
-            return render_template('Get.html',
+            return render_template('Get.html', settings=settings,
                                    error_text=Errors.FILE_NOT_FOUND,
                                    form_data=request.form)
 
@@ -60,23 +74,26 @@ def get():
             return redirect('/found')
         elif request.form['method'] == 'download_it':
             return redirect('/found?download=true')
-    return render_template('Get.html')
+    return render_template('Get.html', settings=settings)
 
 
 @app.route('/put', methods=['GET', 'POST'])
 def put():
+    settings = hl.Settings(request)
     if request.method == 'POST':
         file = request.files['loaded_file']
         hours = int(request.form['life_hours'])
 
         if not file:
-            return render_template('Put.html', error_text=Errors.NO_FILE,
+            return render_template('Put.html', settings=settings,
+                                   error_text=Errors.NO_FILE,
                                    form_data=request.form)
 
         file_key = hl.generate_file_key()
         path = f'files/{file_key}'
         name = hl.format_file_name(file.filename)
-        link = f'{PROTOCOL}://{SITE_DOMAIN}/' + path + '/' + name
+        link = f'{CONFIG.base.protocol}://{CONFIG.base.domain}/' + path +\
+               '/' + name
         death_date = dt.datetime.today() + dt.timedelta(hours=hours)
 
         try:
@@ -85,7 +102,8 @@ def put():
         except Exception as ex:
             lg.error("Could not save file: " + str(ex))
             shutil.rmtree(path, ignore_errors=True)
-            return render_template('Put.html', error_text=Errors.SAVE_ERROR,
+            return render_template('Put.html', settings=settings,
+                                   error_text=Errors.SAVE_ERROR,
                                    form_data=request.form)
 
         db_session = d_s.create_session()
@@ -104,22 +122,25 @@ def put():
             hours=hours
         )
         return redirect('/uploaded')
-    return render_template('Put.html')
+    return render_template('Put.html', settings=settings)
 
 
 @app.route('/uploaded', methods=['GET'])
 def uploaded():
+    settings = hl.Settings(request)
     file_info = user_session.get_added_file_info()
     if file_info is None:
         fl.abort(404)
     word_hour_form = hl.WORD_HOUR.inflect(
         {'gent'}).make_agree_with_number(file_info.hours).word
-    return render_template('Uploaded.html', file_info=file_info,
+    return render_template('Uploaded.html', settings=settings,
+                           file_info=file_info,
                            word_hour_form=word_hour_form)
 
 
 @app.route('/found', methods=['GET'])
 def found():
+    settings = hl.Settings(request)
     download = 'download' in request.args.keys()
     file_info = user_session.get_found_file_info()
     if file_info is None:
@@ -136,8 +157,8 @@ def found():
         fl.abort(404)
     user_session.update_found_file_info(life_time=life_time)
     file_info = user_session.get_found_file_info()
-    return render_template('Found.html', download=download,
-                           file_info=file_info)
+    return render_template('Found.html', settings=settings,
+                           download=download, file_info=file_info)
 
 
 @app.route('/files/<path:path>')
@@ -147,7 +168,8 @@ def get_file(path):
 
 @app.route('/about', methods=['GET'])
 def about():
-    return render_template('About.html')
+    settings = hl.Settings(request)
+    return render_template('About.html', settings=settings)
 
 
 def clean_files():
@@ -178,8 +200,8 @@ def delete_real_file(file):
 if __name__ == '__main__':
     scheduler = BackgroundScheduler()
     job = scheduler.add_job(clean_files, 'interval',
-                            minutes=int(config['schedule_interval']))
+                            minutes=int(CONFIG.base.schedule_interval))
     scheduler.start()
 
     port = int(os.environ.get("PORT", 8080))
-    app.run(host=config['host'], port=port)
+    app.run(host=CONFIG.base.host, port=port)

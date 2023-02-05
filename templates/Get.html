@@ -21,12 +21,24 @@
                     <div class="error-message-block">{{ error_text }}</div>
                 {% endif %}
                 <div class="radio-buttons-container">
-                    {% if form_data is defined and form_data['method'] == 'check_it' %}
+                    <!-- Конфигурация из настроек -->
+                    {% if settings.get == "download_it" %}
+                    {% set first_checked = "checked" %}
+                    {% set second_checked = "" %}
+                    {% else %}
+                    {% set first_checked = "" %}
+                    {% set second_checked = "checked" %}
+                    {% endif %}
+
+                    <!-- Конфигурация последней отправки формы -->
+                    {% if form_data is defined %}
+                    {% if form_data['method'] == 'check_it' %}
                     {% set first_checked = "" %}
                     {% set second_checked = "checked" %}
                     {% else %}
                     {% set first_checked = "checked" %}
                     {% set second_checked = "" %}
+                    {% endif %}
                     {% endif %}
                     <div class="radio-button-container">
                         <input id="radio-1" name="method" type="radio" value="download_it" {{ first_checked }} />

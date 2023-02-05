@@ -1,40 +1,67 @@
 import datetime as dt
 import flask as fl
-import logging as lg
+from json import load as load_json_file
 from random import choices
 from pymorphy2 import MorphAnalyzer
 
 from data import db_session as d_s
 from data.files import File
 
-SYMBOLS = list('1234567890!@#$%^&*()~`-=_+ qwertyuiop[]asdfghjkl;zxcvbnm,./\
-QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?')
-ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz"
-BAD_CHARS = {' ', '/', '\\', '&', '?', '@', '"', "'", '(', ')'}
-_DEFAULT = int('abcdef', 36)
-_MAX = int('zzzzzz', 36)
+
+class Attributor:
+    """Класс, сохраняющий вложенные словари в виде вложенных объектов
+    (ключи словаря = атрибуты объекта). Чтобы словарь не становился объектом,
+    в него нужно добавить значение True под ключом '.no_deserialize'
+    (в итоговом объекте не сохраняются). Внутри него все словари будут таким
+    же образом преобразованы в объекты."""
+    @staticmethod
+    def init(dict_):
+        """Метод инициализации (вместо __init__)"""
+        at = Attributor()
+        for key, val in dict_.items():
+            if isinstance(val, dict):
+                if val.get(".no_deserialize", False):
+                    setattr(at, key, Attributor._make_dict(val))
+                else:
+                    setattr(at, key, Attributor.init(val))
+            elif not key.startswith('.'):
+                setattr(at, key, val)
+        return at
+
+    @staticmethod
+    def _make_dict(dict_):
+        at = {}
+        for key, val in dict_.items():
+            if isinstance(val, dict):
+                if val.get(".no_deserialize", False):
+                    at[key] = Attributor._make_dict(val)
+                else:
+                    at[key] = Attributor.init(val)
+            elif not key.startswith('.'):
+                at[key] = val
+        return at
+
+
+with open('config.json', encoding='utf-8') as file:
+    DICT_CONFIG = load_json_file(file)
+CONFIG = Attributor.init(DICT_CONFIG)
+
+_DEFAULT = int(CONFIG.consts.default_file_key, 36)
+_MAX = int(CONFIG.consts.max_file_key, 36)
 
 _word_analyzer = MorphAnalyzer()
 WORD_HOUR = _word_analyzer.parse('час')[0]
 WORD_MINUTE = _word_analyzer.parse('минута')[0]
-
-lg.basicConfig(level='INFO',
-               format='%(asctime)s %(levelname)s %(filename)s %(message)s')
 
 
 class Session:
     _ADDED_FILE_INFO = 'added_file_info'
     _FOUND_FILE_INFO = 'found_file_info'
 
-    class Saver:
-        def __init__(self, **attrs):
-            for key, val in attrs.items():
-                setattr(self, key, val)
-
     def get_added_file_info(self):
         if Session._ADDED_FILE_INFO not in fl.session:
             return None
-        return Session.Saver(**fl.session[Session._ADDED_FILE_INFO])
+        return Attributor.init(fl.session[Session._ADDED_FILE_INFO])
 
     def set_added_file_info(self, **info_items):
         fl.session[Session._ADDED_FILE_INFO] = {}
@@ -52,7 +79,7 @@ class Session:
     def get_found_file_info(self):
         if Session._FOUND_FILE_INFO not in fl.session:
             return None
-        return Session.Saver(**fl.session[Session._FOUND_FILE_INFO])
+        return Attributor.init(fl.session[Session._FOUND_FILE_INFO])
 
     def set_found_file_info(self, **info_items):
         fl.session[Session._FOUND_FILE_INFO] = {}
@@ -68,6 +95,19 @@ class Session:
             fl.session[Session._FOUND_FILE_INFO][key] = val
 
 
+class Settings:
+    COOKIE_AGE = 60 * 60 * 24 * 365 * 20
+    def __init__(self, request):
+        for key, val in CONFIG.default_settings.items():
+            setattr(self, key, request.cookies.get(key, val))
+        self.set_data = CONFIG.settings
+
+    def save(self, response):
+        for key in CONFIG.default_settings.keys():
+            response.set_cookie(key, getattr(self, key),
+                                max_age=Settings.COOKIE_AGE)
+
+
 class Errors:
     NO_FILE = 'Вы не выбрали файл.'
     SAVE_ERROR = 'Не удалось сохранить файл. \
@@ -77,17 +117,7 @@ class Errors:
 
 
 def generate_secret_key():
-    return ''.join(choices(SYMBOLS, k=250))
-
-
-def parse_config_file(path):
-    with open(path, encoding='utf-8') as f:
-        data = f.read()
-    result = {}
-    for string in data.split('\n'):
-        key, val = string.split('==')
-        result[key] = val
-    return result
+    return ''.join(choices(CONFIG.consts.secret_key_alpha, k=250))
 
 
 def generate_file_key():
@@ -106,7 +136,7 @@ def generate_file_key():
     while num_key > 0:
         index = num_key % 36
         num_key //= 36
-        result = ALPHABET[index] + result
+        result = CONFIG.consts.file_key_alpha[index] + result
     return result
 
 
@@ -123,7 +153,7 @@ def get_life_time(death_date):
 
 
 def format_file_name(name):
-    for char in BAD_CHARS:
+    for char in CONFIG.consts.bad_chars:
         name = name.replace(char, '_')
     return name
 
