@@ -6,9 +6,16 @@ section {
   font-size: 22px;
 }
 
-.problem-block section {
+.problem-block section, 
+.conclusion-block section {
   padding-left: 2vw;
   padding-right: 2vw;
+}
+
+.problem-block,
+.comparison-block {
+  background-size: cover;
+  background-position: center;
 }
 
 .solution-block section {
@@ -71,9 +78,4 @@ section {
 .conclusion-block {
   padding-top: 40px;
   padding-bottom: 60px;
-}
-
-.conclusion-block section {
-  padding-left: 2vw;
-  padding-right: 2vw;
 }

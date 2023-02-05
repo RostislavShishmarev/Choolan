@@ -20,7 +20,8 @@ body {
   color: #baae9b;
 }
 
-.ch-link:hover, .ch-link:focus {
+.ch-link:hover,
+.ch-link:focus {
   color: #faf6eb;
   background-color: #bdb3a278;
 }
@@ -55,8 +56,14 @@ body {
   border-color: #bdbdbd;
 }
 
+.ch-text-input:focus,
+.copy-button:hover,
+.result-text-input:hover {
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
 .radio-button-container label {
-  color: #e3e3e3
+  color: #e3e3e3;
 }
 
 .radio-button-container label:before {
@@ -72,14 +79,14 @@ body {
   border-color: #ffd503;
 }
 
-
 .submit-button {
   color: #a8a8a8;
   border-color: #a8a8a8;
   background-color: rgba(0, 0, 0, 0);
 }
 
-.submit-button:hover, .submit-button:focus {
+.submit-button:hover,
+.submit-button:focus {
   color: #d9d9d9;
   border-color: #d9d9d9;
   background-color: #bdb3a23c;
@@ -132,8 +139,6 @@ body {
 
 .problem-block {
   background-image: url(../../img/bricks.jpg);
-  background-size: cover;
-  background-position: center;
 }
 
 .problem-block section,
@@ -147,8 +152,6 @@ body {
 
 .comparison-block {
   background-image: url(../../img/desks.jpg);
-  background-size: cover;
-  background-position: center;
 }
 
 .comparison-table td,
@@ -195,4 +198,18 @@ body::-webkit-scrollbar-thumb,
 
 .ch-file-input-text {
   color: #e8e8e8;
+}
+
+.ch-select {
+  color: #f2f2f2;
+  border-color: #b89d16;
+  background-color: #121210;
+}
+
+.ch-select:hover {
+  box-shadow: 0 0 0 0.2rem #e5ba1ea8;
+}
+
+.settings-block {
+  background-image: url(../../img/horizontal_desks.jpg);
 }

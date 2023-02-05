@@ -62,6 +62,12 @@ body {
   border-color: #bdbdbd;
 }
 
+.ch-text-input:focus,
+.copy-button:hover,
+.result-text-input:hover {
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
 .radio-button-container label {
   color: #141413;
 }
@@ -138,10 +144,9 @@ body {
 }
 
 .problem-block,
-.comparison-block {
+.comparison-block,
+.settings-block {
   background-image: url(../../img/triangles.jpg);
-  background-size: cover;
-  background-position: center;
 }
 
 .problem-block section,
@@ -178,4 +183,14 @@ body {
 
 .ch-file-input-text {
   color: #302f2b;
+}
+
+.ch-select {
+  color: #121210;
+  border-color: #b89d16;
+  background-color: #f2f2f2;
+}
+
+.ch-select:hover {
+  box-shadow: 0 0 0 0.2rem #e5ba1ea8;
 }

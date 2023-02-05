@@ -1,0 +1,63 @@
+.settings-block {
+  background-size: cover;
+  background-position: center;
+}
+
+.settings-caption {
+  font-size: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.settings-blocks-container {
+  display: grid;
+  gap: 10px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.settings-blocks-container > div {
+  border: solid 3px grey;
+  padding: 10px;
+  min-width: 240px;
+}
+
+.theme-select-container {
+  margin-top: 10px;
+}
+
+.ch-select {
+  width: fit-content;
+  padding-right: 20px;
+  border-width: 2px;
+  border-style: solid;
+  outline: 0;
+  transition: all 0.2s ease;
+}
+
+.ch-select:focus {
+  outline: 0;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.submit-container > input {
+  font-size: 24px;
+  border-width: 3px;
+  padding: 6px;
+}
+
+.about-settings-block section {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}

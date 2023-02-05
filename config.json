@@ -38,14 +38,33 @@
         "start_page": {
             ".no_deserialize": true,
             "get": {
-                "name": "",
-                "link": "/get",
-                "value": "get"
+                "name": "Взять",
+                "link": "/get"
             },
             "put": {
-                "name": "",
-                "link": "/put",
-                "value": "put"
+                "name": "Положить",
+                "link": "/put"
+            }
+        },
+        "get": {
+            ".no_deserialize": true,
+            "download_it": {
+                "name": "Скачать сразу"
+            },
+            "check_it": {
+                "name": "Сначала посмотреть"
+            }
+        },
+        "copy": {
+            ".no_deserialize": true,
+            "none": {
+                "name": "Ничего"
+            },
+            "key": {
+                "name": "Ключ файла"
+            },
+            "link": {
+                "name": "Ссылку на файл"
             }
         }
     }

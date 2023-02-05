@@ -1,4 +1,71 @@
-{% extends "Base.html" %}
-{% block content %}
-
+{% extends "Base.html" %} {% block content %}
+<div class="settings-block">
+  <div class="container">
+    <div class="settings-caption"><div>Настройки для устройства</div></div>
+       <form method="POST" class="settings-form">
+          <div class="settings-blocks-container">
+            <div>
+              <div class="box-caption">Тема</div>
+              <div class="box-input">
+                  <div class="theme-select-container">
+                      <select class="ch-select" name="theme">
+                          {% for theme_key in settings.set_data.theme.keys() %}
+                          <option value="{{ theme_key }}" {% if theme_key == settings.theme %} selected {% endif %}>{{ settings.set_data.theme[theme_key].name }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+              </div>
+            </div>
+            <div>
+              <div class="box-caption">Главная страница</div>
+              <div class="box-input">
+                  {% for page_key in settings.set_data.start_page.keys() %}
+                  <div class="radio-button-container">
+                      <input id="radio-{{ page_key }}" name="start_page" type="radio" value="{{ page_key }}" {% if page_key == settings.start_page %} checked {% endif %} />
+                      <label for="radio-{{ page_key }}">
+                          {{ settings.set_data.start_page[page_key].name }}
+                      </label>
+                  </div>
+                  {% endfor %}
+              </div>
+            </div>
+            <div>
+              <div class="box-caption">Опция скачивания по умолчанию</div>
+              <div class="box-input">
+                  {% for get_key in settings.set_data.get.keys() %}
+                  <div class="radio-button-container">
+                      <input id="radio-{{ get_key }}" name="get" type="radio" value="{{ get_key }}" {% if get_key == settings.get %} checked {% endif %} />
+                      <label for="radio-{{ get_key }}">
+                          {{ settings.set_data.get[get_key].name }}
+                      </label>
+                  </div>
+                  {% endfor %}
+              </div>
+            </div>
+            <div>
+              <div class="box-caption">При загрузке автоматически копировать</div>
+              <div class="box-input">
+                  {% for copy_key in settings.set_data.copy.keys() %}
+                  <div class="radio-button-container">
+                      <input id="radio-{{ copy_key }}" name="copy" type="radio" value="{{ copy_key }}" {% if copy_key == settings.copy %} checked {% endif %} />
+                      <label for="radio-{{ copy_key }}">
+                          {{ settings.set_data.copy[copy_key].name }}
+                      </label>
+                  </div>
+                 {% endfor %}
+              </div>
+           </div>
+         </div>
+        <div class="submit-container">
+            <input type="submit" class="submit-button" value="Сохранить" />
+        </div>
+     </form>
+    </div>
+</div>
+<div class="about-settings-block">
+  <div class="container">
+    <section>
+    </section>
+  </div>
+</div>
 {% endblock %}
