@@ -1,48 +1,50 @@
-.problem-block {
-  background-image: url(../img/bricks.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-.problem-block div:first-child section,
-.solution-block div:first-child section {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.problem-block div:last-child section,
-.solution-block div:last-child section {
-  padding-bottom: 50px;
+q {
+  font-style: italic;
 }
 
 section {
   font-size: 22px;
 }
 
+.problem-block {
+  background-image: url(../img/bricks.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
 .problem-block section {
   padding-left: 2vw;
   padding-right: 2vw;
-  color: #d6d4cb;
 }
 
 .solution-block section {
   padding-left: 4vw;
   padding-right: 4vw;
-  color: #deddd9;
 }
 
-q {
-    font-style: italic;
+.problem-block div:first-child section,
+.solution-block div:first-child section {
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+.problem-block div:last-child section,
+.solution-block div:last-child section {
+  padding-bottom: 60px;
 }
 
 .comparison-block {
   background-image: url(../img/desks.jpg);
   background-size: cover;
   background-position: center;
+  padding-top: 25px;
+  padding-bottom: 40px;
+  overflow: auto;
 }
 
 .comparison-table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 .comparison-table td,
@@ -50,6 +52,8 @@ q {
   padding: 5px;
   width: 50%;
   vertical-align: top;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .comparison-table th {
@@ -64,15 +68,8 @@ q {
 
 .comparison-td div {
   padding-left: 5px;
-  padding-right: 5px;
-}
-
-.comparison-td div.plus {
-  color: green;
-}
-
-.comparison-td div.minus {
-  color: red;
+  padding-right: 8px;
+  font-weight: 700;
 }
 
 .comparison-td p {
@@ -80,6 +77,12 @@ q {
   padding: 0px;
 }
 
-.text-link {
-  text-decoration: underline;
+.conclusion-block {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.conclusion-block section {
+  padding-left: 2vw;
+  padding-right: 2vw;
 }

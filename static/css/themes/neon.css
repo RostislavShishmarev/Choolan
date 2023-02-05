@@ -130,6 +130,28 @@ body {
   color: #baae9b;
 }
 
+.problem-block section,
+.conclusion-block section {
+  color: #d6d4cb;
+}
+
+.solution-block section {
+  color: #deddd9;
+}
+
+.comparison-table td,
+.comparison-table th {
+  border-color: #30302fcf;
+}
+
+.comparison-td div.plus {
+  color: #18780a;
+}
+
+.comparison-td div.minus {
+  color: #ad2411;
+}
+
 *::-webkit-scrollbar-corner {
   background-color: #2b2b2b;
 }
