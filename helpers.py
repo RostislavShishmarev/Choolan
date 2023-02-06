@@ -1,3 +1,5 @@
+import os
+
 import flask as fl
 import datetime as dt
 import logging as lg
@@ -105,6 +107,7 @@ class Settings:
         for key, val in CONFIG.default_settings.items():
             setattr(self, key, request.cookies.get(key, val))
         self.set_data = CONFIG.settings
+        self.main_css_path = CONFIG.base.main_css_path
 
     def set_value(self, key, value):
         setattr(self, key, value)
@@ -167,3 +170,20 @@ def format_file_name(name):
 
 def format_file_key(key):
     return key.replace(' ', '').replace('-', '').lower()
+
+
+def clay_css_files():
+    if os.path.exists(CONFIG.base.main_css_path):
+        os.remove(CONFIG.base.main_css_path)
+
+    result_css_data = ''
+    root_css_path = os.path.dirname(CONFIG.base.main_css_path)
+    for name in os.listdir(root_css_path):
+        css_file_path = os.path.join(root_css_path, name)
+        if os.path.isdir(css_file_path):
+            continue
+        with open(css_file_path, encoding='utf-8') as f:
+            result_css_data += f.read() + '\n'
+
+    with open(CONFIG.base.main_css_path, mode='w', encoding='utf-8') as f:
+        f.write(result_css_data)

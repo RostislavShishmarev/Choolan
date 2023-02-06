@@ -17,9 +17,11 @@ app = fl.Flask(__name__)
 app.config['SECRET_KEY'] = hl.generate_secret_key()
 app.config['JSON_AS_ASCII'] = False
 
+# Подготовка файловой системы
 for dir_ in CONFIG.base.necessary_dirs:
     if not os.path.exists(dir_):
         os.makedirs(dir_)
+hl.clay_css_files()  # Важно
 
 user_session = hl.Session()
 

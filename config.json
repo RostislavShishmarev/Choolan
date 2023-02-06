@@ -5,6 +5,7 @@
         "host": "127.0.0.1",
         "schedule_interval": 30,
         "db_path": "db/ch_files.sqlite",
+        "main_css_path": "static/css/Style.css",
         "logging_level": "DEBUG",
         "logging_format": "%(asctime)s %(levelname)s %(filename)s %(message)s",
         "necessary_dirs": ["files", "db"]
@@ -18,7 +19,7 @@
     },
     "default_settings": {
         ".no_deserialize": true,
-        "theme": "neon",
+        "theme": "dark",
         "start_page": "get",
         "get": "download_it",
         "copy": "none"
@@ -28,12 +29,16 @@
         "theme": {
             ".no_deserialize": true,
             "neon": {
-                "name": "Неоновая",
-                "path": "../static/css/themes/neon.css"
+                "name": "Тёмная",
+                "path": "../static/css/themes/dark.css"
             },
             "light": {
                 "name": "Светлая",
                 "path": "../static/css/themes/light.css"
+            },
+            "nothing": {
+                "name": "Неоновая",
+                "path": "../static/css/themes/neon.css"
             }
         },
         "start_page": {

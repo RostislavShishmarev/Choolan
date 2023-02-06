@@ -1,10 +1,10 @@
 body {
   color: #e8e8e8;
-  background-color: #0f0f0f;
+  background-color: #141312;
 }
 
 .HEAD {
-  background-color: #1a1a1a;
+  background-color: #1a1614;
   border-bottom-color: #080807;
 }
 
@@ -13,33 +13,33 @@ body {
 }
 
 .logo-text {
-  color: #d9d8d7;
+  color: #e3d9c1;
 }
 
 .ch-link {
-  color: #b8b8b8;
-  padding-left: 3px;
-  padding-right: 3px;
+  color: #baae9b;
 }
 
 .ch-link:hover,
 .ch-link:focus {
-  color: #05f2e2;
-  background-color: #00000078;
-  box-shadow: 0 0 3px 0.15rem #05f2e2a8;
+  color: #faf6eb;
+  background-color: #bdb3a278;
 }
 
 .nav-link {
-  color: #b8b8b8;
+  color: #d6d2c7;
 }
 
 .nav-link-chosen {
-  border-bottom-color: #b8b8b8;
+  border-bottom-color: #d6d2c7;
+}
+
+.text-link {
+  color: #e8e8e8;
 }
 
 .main-section-form {
-  border-color: black;
-  box-shadow: 0 0 4px 0.2rem #ffb805cf;
+  border-color: #a8852a;
 }
 
 .ch-text-input {
@@ -56,19 +56,10 @@ body {
   border-color: #bdbdbd;
 }
 
-.ch-text-input:focus {
-  border-color: #1db31b9e;
-  box-shadow: 0 0 3px 0.2rem #1db31b9e;
-}
-
-.result-text-input {
-    color: #0fd1d1;
-}
-
+.ch-text-input:focus,
 .copy-button:hover,
-.result-text-input:focus {
-  border-color: #1b9fb39e;
-  box-shadow: 0 0 3px 0.2rem #1b9fb39e;
+.result-text-input:hover {
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
 
 .radio-button-container label {
@@ -76,18 +67,16 @@ body {
 }
 
 .radio-button-container label:before {
-  border-color: #ecc608;
-  margin-right: 8px;
+  border-color: #b89d16;
 }
 
 .radio-button-container input:checked + label:before {
-  background-color: #ecc608;
+  background-color: #b89d16;
   border-color: rgba(0, 0, 0);
-  box-shadow: 0 0 3px 0.14rem #ffd503b9;
 }
 
 .radio-button-container label:hover:before {
-  box-shadow: 0 0 3px 0.14rem #ffd503b9;
+  border-color: #ffd503;
 }
 
 .submit-button {
@@ -98,15 +87,20 @@ body {
 
 .submit-button:hover,
 .submit-button:focus {
-  color: #d60d61d7;
-  border-color: #d60d61d7;
-  box-shadow: 0 0 2px 0.1rem #d60d61d7;
+  color: #d9d9d9;
+  border-color: #d9d9d9;
+  background-color: #bdb3a23c;
+}
+
+.fast-submit-button:hover {
+  color: #bf2436;
+  border-color: #bf2436;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .error-message-block {
   color: #d12d17;
-  box-shadow: 0 0 3px 0.2rem #b53422;
-  border-width: 0px;
+  border-color: #b53422;
 }
 
 .copy-button {
@@ -115,12 +109,16 @@ body {
 }
 
 .copy-rect {
-  stroke: #47b8d1;
+  stroke: #d9d9d9;
   fill: rgba(0, 0, 0, 0);
 }
 
+.copy-button:hover .copy-rect {
+  stroke: #47b8d1;
+}
+
 .copy-message {
-  color: #b5b5b5;
+  color: #baae9b;
 }
 
 .result-button {
@@ -136,7 +134,7 @@ body {
 }
 
 .foot-text {
-  color: #bdbdbd;
+  color: #baae9b;
 }
 
 .problem-block {
@@ -146,11 +144,11 @@ body {
 .problem-block section,
 .conclusion-block section,
 .about-settings-block section {
-  color: #d6d6d4;
+  color: #d6d4cb;
 }
 
 .solution-block section {
-  color: #e2e1dd;
+  color: #deddd9;
 }
 
 .comparison-block {
@@ -163,11 +161,11 @@ body {
 }
 
 .comparison-td div.plus {
-  color: #28c410;
+  color: #18780a;
 }
 
 .comparison-td div.minus {
-  color: #f82206;
+  color: #ad2411;
 }
 
 *::-webkit-scrollbar-corner {
@@ -190,14 +188,13 @@ body::-webkit-scrollbar-thumb,
 }
 
 .ch-file-input-button {
-  color: #c1c1c0;
+  color: #baae9b;
   background-color: rgba(0, 0, 0, 0);
 }
 
 .ch-file-input-button:hover {
-  color: #ff00f7d9;
-  background-color: #00000094;
-  box-shadow: 0 0 6px #ff00f7d9;
+  color: #faf6eb;
+  background-color: #bdb3a278;
 }
 
 .ch-file-input-text {
@@ -211,7 +208,7 @@ body::-webkit-scrollbar-thumb,
 }
 
 .ch-select:hover {
-  box-shadow: 0 0 5px 0.2rem #ffc803c0;
+  box-shadow: 0 0 0 0.2rem #e5ba1ea8;
 }
 
 .settings-block {
