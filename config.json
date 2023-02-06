@@ -5,7 +5,7 @@
         "host": "127.0.0.1",
         "schedule_interval": 30,
         "db_path": "db/ch_files.sqlite",
-        "logging_level": "INFO",
+        "logging_level": "DEBUG",
         "logging_format": "%(asctime)s %(levelname)s %(filename)s %(message)s",
         "necessary_dirs": ["files", "db"]
     },
@@ -24,6 +24,7 @@
         "copy": "none"
     },
     "settings": {
+        "set_list": ["theme", "start_page", "get", "copy"],
         "theme": {
             ".no_deserialize": true,
             "neon": {

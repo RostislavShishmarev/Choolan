@@ -1,7 +1,6 @@
 import os
 import shutil
 import datetime as dt
-import logging as lg
 import flask as fl
 from flask import render_template, request, redirect, send_from_directory
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -10,14 +9,13 @@ from data import db_session as d_s
 from data.files import File
 
 import helpers as hl
-from helpers import Errors, CONFIG
+from helpers import lg, Errors, CONFIG
+
+from cleaner import clean_files, delete_real_file_if_possible
 
 app = fl.Flask(__name__)
 app.config['SECRET_KEY'] = hl.generate_secret_key()
 app.config['JSON_AS_ASCII'] = False
-
-lg.basicConfig(level=CONFIG.base.logging_level,
-               format=CONFIG.base.logging_format)
 
 for dir_ in CONFIG.base.necessary_dirs:
     if not os.path.exists(dir_):
@@ -58,8 +56,8 @@ def get():
         life_time = hl.get_life_time(file.death_date)
         if life_time is None:
             db_sess.delete(file)
-            delete_real_file(file)
             db_sess.commit()
+            delete_real_file_if_possible(file)
             return render_template('Get.html', settings=settings,
                                    error_text=Errors.FILE_NOT_FOUND,
                                    form_data=request.form)
@@ -146,14 +144,14 @@ def found():
     if file_info is None:
         fl.abort(404)
 
-    # Update time and delete file if time is expired
+    # Обновление времени и удаление файла, если оно истекло
     db_sess = d_s.create_session()
     file = db_sess.query(File).filter(File.key == file_info.key).first()
     life_time = hl.get_life_time(file.death_date)
     if life_time is None:
         db_sess.delete(file)
-        delete_real_file(file)
         db_sess.commit()
+        delete_real_file_if_possible(file)
         fl.abort(404)
     user_session.update_found_file_info(life_time=life_time)
     file_info = user_session.get_found_file_info()
@@ -176,39 +174,12 @@ def about():
 def settings_page():
     settings = hl.Settings(request)
     if request.method == 'POST':
-        settings.theme = request.form["theme"]
-        settings.start_page = request.form["start_page"]
-        settings.get = request.form["get"]
-        settings.copy = request.form["copy"]
+        for key in CONFIG.settings.set_list:
+            settings.set_value(key, request.form[key])
     response = fl.make_response(render_template('Settings.html',
                                                 settings=settings))
     settings.save(response)
     return response
-
-
-def clean_files():
-    lg.info('Start cleaning files...')
-    db_sess = d_s.create_session()
-    files = db_sess.query(File).all()
-    for file in files:
-        time = hl.get_life_time(file.death_date)
-        if time is None:
-            try:
-                delete_real_file(file)
-            except Exception as ex:
-                lg.error(
-                    f'Can not delete file {file.folder_path}/{file.name}: ' +
-                    str(ex)
-                )
-                continue
-            db_sess.delete(file)
-    db_sess.commit()
-    lg.info('Files cleaned successfully!')
-
-
-def delete_real_file(file):
-    shutil.rmtree(file.folder_path)
-    lg.debug(f'Successfully deleted file {file.folder_path}/{file.name}')
 
 
 if __name__ == '__main__':

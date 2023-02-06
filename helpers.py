@@ -1,8 +1,9 @@
-import datetime as dt
 import flask as fl
-from json import load as load_json_file
+import datetime as dt
+import logging as lg
 from random import choices
 from pymorphy2 import MorphAnalyzer
+from json import load as load_json_file
 
 from data import db_session as d_s
 from data.files import File
@@ -43,8 +44,8 @@ class Attributor:
 
 
 with open('config.json', encoding='utf-8') as file:
-    DICT_CONFIG = load_json_file(file)
-CONFIG = Attributor.init(DICT_CONFIG)
+    _dict_config = load_json_file(file)
+CONFIG = Attributor.init(_dict_config)
 
 _DEFAULT = int(CONFIG.consts.default_file_key, 36)
 _MAX = int(CONFIG.consts.max_file_key, 36)
@@ -52,6 +53,9 @@ _MAX = int(CONFIG.consts.max_file_key, 36)
 _word_analyzer = MorphAnalyzer()
 WORD_HOUR = _word_analyzer.parse('час')[0]
 WORD_MINUTE = _word_analyzer.parse('минута')[0]
+
+lg.basicConfig(level=CONFIG.base.logging_level,
+               format=CONFIG.base.logging_format)
 
 
 class Session:
@@ -101,6 +105,9 @@ class Settings:
         for key, val in CONFIG.default_settings.items():
             setattr(self, key, request.cookies.get(key, val))
         self.set_data = CONFIG.settings
+
+    def set_value(self, key, value):
+        setattr(self, key, value)
 
     def save(self, response):
         for key in CONFIG.default_settings.keys():
