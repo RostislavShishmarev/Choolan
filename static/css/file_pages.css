@@ -25,7 +25,8 @@
 
 .nav-link-chosen {
   border-radius: 0px;
-  border-bottom: 3px solid;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
   pointer-events: none;
 }
 

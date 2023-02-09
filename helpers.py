@@ -178,7 +178,7 @@ def clay_css_files():
 
     result_css_data = ''
     root_css_path = os.path.dirname(CONFIG.base.main_css_path)
-    for name in os.listdir(root_css_path):
+    for name in CONFIG.style_files_names:
         css_file_path = os.path.join(root_css_path, name)
         if os.path.isdir(css_file_path):
             continue

@@ -23,8 +23,7 @@ def global_init(db_file):
     engine = sa.create_engine(conn_str, echo=False)
     __factory = orm.sessionmaker(bind=engine)
 
-    # noinspection PyUnresolvedReferences
-    import data.__all_models
+    from data.files import File
 
     SqlAlchemyBase.metadata.create_all(engine)
 

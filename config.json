@@ -17,6 +17,15 @@
         "default_file_key": "abcdef",
         "max_file_key": "zzzzzz"
     },
+    "style_files_names": [
+        "main.css",
+        "base.css",
+        "about.css",
+        "settings.css",
+        "file_input.css",
+        "file_pages.css",
+        "adapter.css"
+    ],
     "default_settings": {
         ".no_deserialize": true,
         "theme": "dark",
