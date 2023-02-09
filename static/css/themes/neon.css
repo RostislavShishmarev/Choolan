@@ -18,8 +18,12 @@ body {
 
 .ch-link {
   color: #b8b8b8;
-  padding-left: 3px;
+}
+
+/* "not" added for not to conflct with .success-link paddings */
+.ch-link:not(.success-link) {
   padding-right: 3px;
+  padding-left: 3px;
 }
 
 .ch-link:hover,
@@ -62,7 +66,7 @@ body {
 }
 
 .result-text-input {
-    color: #0fd1d1;
+    color: #e8e8e8;
 }
 
 .copy-button:hover,
@@ -112,6 +116,7 @@ body {
 .copy-button {
   background-color: #1a1917;
   border-color: #4a4845;
+  transition: 0.2s all ease-in;
 }
 
 .copy-rect {

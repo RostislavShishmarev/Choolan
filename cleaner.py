@@ -46,7 +46,7 @@ def delete_real_file_if_possible(file):
 
 def delete_real_file(file):
     shutil.rmtree(file.folder_path)
-    lg.debug(f'Successfully deleted file {file.folder_path}/{file.name}')
+    lg.info(f'Successfully deleted file {file.folder_path}/{file.name}')
 
 
 if __name__ == '__main__':
