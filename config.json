@@ -37,7 +37,7 @@
         "set_list": ["theme", "start_page", "get", "copy"],
         "theme": {
             ".no_deserialize": true,
-            "neon": {
+            "dark": {
                 "name": "Тёмная",
                 "path": "../static/css/themes/dark.css"
             },
@@ -45,7 +45,7 @@
                 "name": "Светлая",
                 "path": "../static/css/themes/light.css"
             },
-            "nothing": {
+            "neon": {
                 "name": "Неоновая",
                 "path": "../static/css/themes/neon.css"
             }
