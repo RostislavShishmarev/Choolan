@@ -176,8 +176,8 @@ def about():
 def settings_page():
     settings = hl.Settings(request)
     if request.method == 'POST':
-        for key in CONFIG.settings.set_list:
-            settings.set_value(key, request.form[key])
+        for key in CONFIG.settings.set_dict.keys():
+            settings.set_value(key, str(request.form[key]))
     response = fl.make_response(render_template('Settings.html',
                                                 settings=settings))
     settings.save(response)

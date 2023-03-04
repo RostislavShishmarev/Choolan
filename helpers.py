@@ -108,6 +108,7 @@ class Settings:
             setattr(self, key, request.cookies.get(key, val))
         self.set_data = CONFIG.settings
         self.main_css_path = CONFIG.base.main_css_path
+        self.path = request.path
 
     def set_value(self, key, value):
         setattr(self, key, value)

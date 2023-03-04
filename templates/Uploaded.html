@@ -87,6 +87,11 @@
       </div>
     </div>
   </div>
+  {% if settings.play_sounds == "on" %}
+    <video id="myaudio" controls="" autoplay="" name="media" preload="auto" hidden volume="0.2">
+      <source src="../static/audio/win.mp3" type="audio/mp3">
+    </video>
+  {% endif %}
 </div>
 <script src="../static/js/uploaded_page.js"></script>
 {% if settings.copy == "key" %}

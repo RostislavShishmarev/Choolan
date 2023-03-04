@@ -2,6 +2,7 @@
 db/
 files/
 static/img/
+static/audio/
 static/css/Style.css
 static/favicon.ico
 

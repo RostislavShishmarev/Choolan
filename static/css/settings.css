@@ -14,7 +14,7 @@
 .settings-blocks-container {
   display: grid;
   gap: 10px;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   justify-items: stretch;
   align-items: stretch;
@@ -27,7 +27,7 @@
   min-width: 240px;
 }
 
-.theme-select-container {
+.setting-container {
   margin-top: 10px;
 }
 

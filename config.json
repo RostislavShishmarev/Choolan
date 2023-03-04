@@ -29,12 +29,22 @@
     "default_settings": {
         ".no_deserialize": true,
         "theme": "dark",
+        "default_hours": "1",
         "start_page": "get",
         "get": "download_it",
-        "copy": "none"
+        "copy": "none",
+        "play_sounds": "off"
     },
     "settings": {
-        "set_list": ["theme", "start_page", "get", "copy"],
+        "set_dict": {
+            ".no_deserialize": true,
+            "theme": "Тема",
+            "default_hours": "Время жизни по умолчанию",
+            "start_page": "Главная страница",
+            "get": "Опция скачивания по умолчанию",
+            "copy": "При загрузке автоматически копировать",
+            "play_sounds": "Звуковое оформление"
+        },
         "theme": {
             ".no_deserialize": true,
             "dark": {
@@ -49,6 +59,10 @@
                 "name": "Неоновая",
                 "path": "../static/css/themes/neon.css"
             }
+        },
+        "default_hours": {
+            "min": "1",
+            "max": "24"
         },
         "start_page": {
             ".no_deserialize": true,
@@ -80,6 +94,15 @@
             },
             "link": {
                 "name": "Ссылку на файл"
+            }
+        },
+        "play_sounds": {
+            ".no_deserialize": true,
+            "on": {
+                "name": "Включить"
+            },
+            "off": {
+                "name": "Выключить"
             }
         }
     }

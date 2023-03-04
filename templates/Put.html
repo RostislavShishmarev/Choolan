@@ -36,7 +36,7 @@
             {% if form_data is defined %}
             value="{{ form_data['life_hours'] }}"
             {% else %}
-            value="1"
+            value="{{ settings.default_hours }}"
             {% endif %}
           />
           <p class="hour-input-text">час(а/ов)</p>

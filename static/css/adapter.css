@@ -21,16 +21,15 @@
   .main-section-info {
     padding-left: 10px;
   }
+
+  .settings-blocks-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 400px) {
   .email-block .foot-text:last-child {
     font-size: 10px;
-  }
-
-  .settings-blocks-container {
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr;
   }
 }
 

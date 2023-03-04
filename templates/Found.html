@@ -14,6 +14,11 @@
     </div>
   </div>
 </div>
+{% if settings.play_sounds == "on" %}
+  <video id="myaudio" controls="" autoplay="" name="media" preload="auto" hidden volume="0.2">
+    <source src="../static/audio/win.mp3" type="audio/mp3">
+  </video>
+{% endif %}
 {% if download %}
 <script>
   let link = document.getElementById('download_link');

@@ -28,7 +28,11 @@
             <a class="logo-text" href="/">Чулан</a>
           </div>
           <div class="right-block">
+            {% if settings.path == "/about" %}
+            <a class="ch-link head-link" href="/">Главная</a>
+            {% else %}
             <a class="ch-link head-link" href="/about">О проекте</a>
+            {% endif %}
           </div>
         </div>
       </div>
